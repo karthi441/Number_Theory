@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+int mod=1e9+7;
+int binary_exponentiation(int a,int b){
+    int ans=1;
+    while(b){
+        if(b&1){
+            ans=(ans*1LL*a)%mod;
+        }
+        a=(a*1LL*a)%mod;
+        b>>=1;
+    }
+    return ans;
+}
+int main(){
+    int N=1e5;
+    int fac[N+1];
+    fac[0]=1;
+    for(int i=1;i<=N;i++){
+        fac[i]=(i*1LL * fac[i-1])%mod;
+    }
+    int t;
+    cin>>t;
+    while(t--){
+        int n,k;
+        cin>>n>>k;
+        int  num=(fac[k]*1LL*fac[n])%mod;
+        int den=(fac[k-n]*1LL *fac[n])%mod;
+        int ans=(num*1LL*binary_exponentiation(den,mod-2))%mod;
+        // cout<<num<<" "<<den<<" ";
+        cout<<ans<<endl;
+
+    }
+}
