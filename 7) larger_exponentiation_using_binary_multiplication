@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+long long int  M=1e18;
+long long int binary_multiply(long long int a, long long int b){
+    long long int ans=0;
+    while(b>0){
+        if(b&1){
+            ans=(ans+a)%M;
+        }
+        a=(a+a)%M;
+        b>>=1;
+    }
+    return ans;
+}
+long long int binary_exponentiation_iterative(long long int a,long long int b){
+     long long int ans=1;
+     while(b){
+         if(b&1){
+             ans=binary_multiply(ans,a);
+         }
+         b>>=1;
+         a=binary_multiply(a,a);
+     }
+    return ans;
+}
+
+int main(){
+    int a,b;
+    cin>>a>>b;
+    cout<<binary_exponentiation_iterative(a,b);// a power b(a^b)
+}
