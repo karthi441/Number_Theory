@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+void make_seive(vector<int> &precomputed,int N){
+    for(int i=2;i<=N;i++){
+         precomputed[i]=1;
+    }
+for(int i=2;i*i<=N;i++){
+    if(precomputed[i]==0)continue;
+    for(int j=i*i;j<=N;j+=i){
+        if(precomputed[j]==1){
+                precomputed[j]=0;
+        }
+    }
+}
+}
+int main(){
+    int N=1e7;
+   vector <int> precomputed(N+1,1);
+    // precomputed[i]=1 means i is prime
+    precomputed[0]=0;
+    precomputed[1]=0;
+    make_seive(precomputed,N);
+    cout<<precomputed[2]<<" "<<precomputed[3]<<" "<<precomputed[5];
+    return 0;
+}
